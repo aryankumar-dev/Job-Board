@@ -1,0 +1,47 @@
+.inputbox{
+    width: 100%;
+    display: block;
+   margin-top: 10px;
+}
+.inputboxall{
+padding-left: 10%;
+padding-right: 10%;
+}
+
+.joblisting{
+    padding-left: 10%;
+padding-right: 10%;
+}
+
+.inputbtns{
+    padding-top: 20px;
+     padding-bottom: 20px;
+}
+
+.inputboxlocation{
+     width: 50%;
+    display: block;
+   margin-top: 10px;
+}
+.job-card {
+ display: flex;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+.job-list {
+  max-width: 100%;
+  margin: auto;
+}
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+.job-list-text{
+    width: 80%;
+}
+
+.job-list-image img{
+    width: 16vw;
+    height: auto;
+}
