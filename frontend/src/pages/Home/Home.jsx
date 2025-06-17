@@ -1,16 +1,23 @@
 import { React, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar.jsx';
+import JobDescription from '../JobDescription/JobDescription.jsx'
 import axios from "axios";
 import './Home.css'
+import { Link } from 'react-router-dom';
+
 function Home() {
     const [searchTitle, setSearchTitle] = useState("");
     const [location, setLocation] = useState("");
     const [dateposted, setDatePosted] = useState(null);
 
     const [jobtype, setjobtype] = useState(null);
+
+
     const [currentPage, setCurrentPage] = useState(1);
     const jobsPerPage = 3;
     const [jobs, setJobs] = useState([]);
+
+
     const handleDateClick = (value) => {
         setDatePosted(value);
     };
@@ -28,7 +35,8 @@ function Home() {
                 page: '1',
                 num_pages: '1',
                 country: location,
-                date_posted: dateposted
+                date_posted: dateposted,
+                job_types: jobtype // <- Add this line
             },
             headers: {
                 'x-rapidapi-key': '3746e50262msh08374f47ca2e9c7p174479jsn05fd25f53639',
@@ -170,9 +178,9 @@ function Home() {
                                 <p>{job.company_name}</p>
                                 <p>{job.employer_name} - {job.job_location}</p>
 
-
-
-                                <a href={job.job_apply_link} target="_blank">Apply</a>
+                                <Link to={`/jobdescription/${job.job_id}`}>
+                                    <button>View Details</button>
+                                </Link>
                             </div>
 
                             <div className="job-list-image">
