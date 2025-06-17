@@ -39,7 +39,7 @@ function Home() {
                 job_types: jobtype // <- Add this line
             },
             headers: {
-                'x-rapidapi-key': '3746e50262msh08374f47ca2e9c7p174479jsn05fd25f53639',
+                'x-rapidapi-key': '86da03215dmshbca3ad8efc48440p17d35bjsnfb189da6ef35',
                 'x-rapidapi-host': 'jsearch.p.rapidapi.com'
             }
         };
@@ -55,6 +55,7 @@ function Home() {
     function sumitdata() {
         fetchData();
     }
+
 
     const indexOfLastJob = currentPage * jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
@@ -218,3 +219,5 @@ function Home() {
 }
 
 export default Home;
+
+
