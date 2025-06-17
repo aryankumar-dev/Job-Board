@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar.jsx';
 import axios from "axios";
 import './JobDescription.css'
@@ -10,36 +10,37 @@ import { Link, useParams } from 'react-router-dom';
 function JobDescription() {
 
 
-  const [jobs, setJobs] = useState([]);
+  const [job, setJob] = useState(null);
   const { id } = useParams();
 
-  const options = {
 
-    method: 'GET',
-    url: 'https://jsearch.p.rapidapi.com/job-details',
-    params: {
-      job_id: id,
-      country: 'us'
-    },
-    headers: {
-      'x-rapidapi-key': '86da03215dmshbca3ad8efc48440p17d35bjsnfb189da6ef35',
-      'x-rapidapi-host': 'jsearch.p.rapidapi.com'
-    }
-  };
-
+ useEffect(() => {
   async function fetchData() {
-    try {
-      const response = await axios.request(options);
+   
+     try {
+        const options = {
+          method: 'GET',
+          url: 'https://jsearch.p.rapidapi.com/job-details',
+          params: {
+            job_id: id,
+            country: 'us'
+          },
+          headers: {
+            'x-rapidapi-key': '86da03215dmshbca3ad8efc48440p17d35bjsnfb189da6ef35',
+            'x-rapidapi-host': 'jsearch.p.rapidapi.com'
+          }
+        };
 
-      console.log(response);
-      setJobs(response.data.data); // Save jobs
-
-    } catch (error) {
-      console.error(error);
-    }
+        const response = await axios.request(options);
+        setJob(response.data.data[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    
   }
 
-  fetchData();
+   fetchData();
+  }, [id]);
 
 
   return (
@@ -47,10 +48,23 @@ function JobDescription() {
       <Navbar />
 
       <div className='description-container'>
-        <p>Home/</p>
-       
-          <h3>{job.job_title}</h3>
+      
         
+        {job ? (
+          <>
+            <p>Home / {job.job_title}</p>
+            <h3>{job.job_title}</h3>
+              <p>{job.employer_name} - {job.job_location}</p>
+          
+            <p>{job.job_description}</p>
+            <a href={job.job_apply_link} target="_blank" rel="noopener noreferrer">
+              <button>Apply</button>
+            </a>
+          </>
+        ) : (
+          <p>Loading job details...</p>
+        )}
+
       </div>
 
     </div>
