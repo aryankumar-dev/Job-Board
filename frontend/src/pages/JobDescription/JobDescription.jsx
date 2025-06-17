@@ -3,12 +3,17 @@ import Navbar from '../../components/Navbar/Navbar.jsx';
 import axios from "axios";
 import './JobDescription.css'
 import { Link, useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
 function JobDescription() {
+const navigate = useNavigate();
+const saveAndGoSaved = () => {
+  if (!job) return;
 
+  navigate('/saved', { state: { job } });
+};
 
   const [job, setJob] = useState(null);
   const { id } = useParams();
@@ -44,6 +49,8 @@ function JobDescription() {
   }, [id]);
 
 
+  
+
   return (
     <div>
       <Navbar />
@@ -69,9 +76,7 @@ function JobDescription() {
               <button className='apply-btn'>Apply</button>
             </Link>
 
-            <Link to={`saved`}>
-              <button>Saved</button>
-            </Link>
+          <button onClick={saveAndGoSaved}>Save Job</button>
           </>
         ) : (
           <p>Loading job details...</p>
