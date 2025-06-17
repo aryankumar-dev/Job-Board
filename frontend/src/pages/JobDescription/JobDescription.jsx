@@ -14,10 +14,10 @@ function JobDescription() {
   const { id } = useParams();
 
 
- useEffect(() => {
-  async function fetchData() {
-   
-     try {
+  useEffect(() => {
+    async function fetchData() {
+
+      try {
         const options = {
           method: 'GET',
           url: 'https://jsearch.p.rapidapi.com/job-details',
@@ -32,14 +32,15 @@ function JobDescription() {
         };
 
         const response = await axios.request(options);
+        console.log(response);
         setJob(response.data.data[0]);
       } catch (error) {
         console.error(error);
       }
-    
-  }
 
-   fetchData();
+    }
+
+    fetchData();
   }, [id]);
 
 
@@ -48,18 +49,29 @@ function JobDescription() {
       <Navbar />
 
       <div className='description-container'>
-      
-        
+
+
         {job ? (
           <>
             <p>Home / {job.job_title}</p>
             <h3>{job.job_title}</h3>
-              <p>{job.employer_name} - {job.job_location}</p>
-          
+            <p>{job.employer_name} - {job.job_location}</p>
+            <h5>Job Description</h5>
             <p>{job.job_description}</p>
-            <a href={job.job_apply_link} target="_blank" rel="noopener noreferrer">
-              <button>Apply</button>
-            </a>
+            <h5>Job Benefits</h5>
+
+            {job.job_benefits && job.job_benefits.map((benefit, index) => (
+              <p key={index}>{benefit}</p>
+            ))}
+
+
+            <Link to={`/apply`}>
+              <button className='apply-btn'>Apply</button>
+            </Link>
+
+            <Link to={`saved`}>
+              <button>Saved</button>
+            </Link>
           </>
         ) : (
           <p>Loading job details...</p>
