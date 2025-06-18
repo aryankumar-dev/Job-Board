@@ -64,3 +64,16 @@ function Saved() {
 }
 
 export default Saved;
+
+
+
+
+
+// folllow code - 4
+// apply code -5 
+// react video - 3 
+
+// resume update  - 10
+// apply 5 company at least - 12 
+// start with backend 
+

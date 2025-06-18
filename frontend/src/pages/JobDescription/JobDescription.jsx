@@ -4,16 +4,19 @@ import axios from "axios";
 import './JobDescription.css'
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import Apply from '../Apply/Apply.jsx';
 
 
 function JobDescription() {
-const navigate = useNavigate();
-const saveAndGoSaved = () => {
-  if (!job) return;
+  const [showModal, setShowModal] = useState(false);
 
-  navigate('/saved', { state: { job } });
-};
+
+  const navigate = useNavigate();
+  const saveAndGoSaved = () => {
+    if (!job) return;
+
+    navigate('/saved', { state: { job } });
+  };
 
   const [job, setJob] = useState(null);
   const { id } = useParams();
@@ -49,7 +52,7 @@ const saveAndGoSaved = () => {
   }, [id]);
 
 
-  
+
 
   return (
     <div>
@@ -71,12 +74,11 @@ const saveAndGoSaved = () => {
               <p key={index}>{benefit}</p>
             ))}
 
+            <button className='apply-btn' onClick={() => setShowModal(true)}>Apply</button>
+            <Apply show={showModal} onClose={() => setShowModal(false)} />
 
-            <Link to={`/apply`}>
-              <button className='apply-btn'>Apply</button>
-            </Link>
 
-          <button onClick={saveAndGoSaved}>Save Job</button>
+            <button onClick={saveAndGoSaved}>Save Job</button>
           </>
         ) : (
           <p>Loading job details...</p>
