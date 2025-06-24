@@ -11,7 +11,7 @@ function Home() {
     const [dateposted, setDatePosted] = useState(null);
 
     const [jobtype, setjobtype] = useState(null);
-
+    const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
 
     const [currentPage, setCurrentPage] = useState(1);
     const jobsPerPage = 3;
@@ -39,7 +39,7 @@ function Home() {
                 job_types: jobtype // <- Add this line
             },
             headers: {
-                'x-rapidapi-key': '86da03215dmshbca3ad8efc48440p17d35bjsnfb189da6ef35',
+                'x-rapidapi-key': apiKey,
                 'x-rapidapi-host': 'jsearch.p.rapidapi.com'
             }
         };

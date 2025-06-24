@@ -9,7 +9,7 @@ import Apply from '../Apply/Apply.jsx';
 
 function JobDescription() {
   const [showModal, setShowModal] = useState(false);
-
+ const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
 
   const navigate = useNavigate();
   const saveAndGoSaved = () => {
@@ -34,7 +34,7 @@ function JobDescription() {
             country: 'us'
           },
           headers: {
-            'x-rapidapi-key': '86da03215dmshbca3ad8efc48440p17d35bjsnfb189da6ef35',
+            'x-rapidapi-key': apiKey,
             'x-rapidapi-host': 'jsearch.p.rapidapi.com'
           }
         };
