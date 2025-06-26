@@ -1,9 +1,76 @@
 .description-container {
-    padding: 50px;
-    margin-left: 70px;
-    margin-right: 70px;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: var(--card-bg, #f9f9f9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.apply-btn{
-    margin-right: 20px;
+.breadcrumb {
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb span {
+  color: gray;
+}
+
+.job-title {
+  font-size: 28px;
+  margin-bottom: 0.5rem;
+}
+
+.employer {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 1.5rem;
+}
+
+.job-section {
+  margin-bottom: 2rem;
+}
+
+.job-section h4 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.job-section ul {
+  padding-left: 1.2rem;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.apply-btn,
+.save-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.apply-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 3rem;
 }
