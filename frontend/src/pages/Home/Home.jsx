@@ -1,30 +1,22 @@
 import { React, useState } from 'react';
 import ResponsiveNavbar from '../../components/Navbar/Navbar.jsx';
-import JobDescription from '../JobDescription/JobDescription.jsx'
 import axios from "axios";
-import './Home.css'
+import './Home.css';
 import { Link } from 'react-router-dom';
 
 function Home() {
     const [searchTitle, setSearchTitle] = useState("");
     const [location, setLocation] = useState("");
     const [dateposted, setDatePosted] = useState(null);
-
     const [jobtype, setjobtype] = useState(null);
-    const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
-
     const [currentPage, setCurrentPage] = useState(1);
-    const jobsPerPage = 3;
     const [jobs, setJobs] = useState([]);
 
+    const jobsPerPage = 3;
+    const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
 
-    const handleDateClick = (value) => {
-        setDatePosted(value);
-    };
-
-    const handleTypeClick = (value) => {
-        setjobtype(value);
-    };
+    const handleDateClick = (value) => setDatePosted(value);
+    const handleTypeClick = (value) => setjobtype(value);
 
     const fetchData = async () => {
         const options = {
@@ -36,7 +28,7 @@ function Home() {
                 num_pages: '1',
                 country: location,
                 date_posted: dateposted,
-                job_types: jobtype // <- Add this line
+                job_types: jobtype
             },
             headers: {
                 'x-rapidapi-key': apiKey,
@@ -45,179 +37,102 @@ function Home() {
         };
         try {
             const response = await axios.request(options);
-            console.log(response);
-            setJobs(response.data.data); // Save jobs
+            setJobs(response.data.data);
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
-    function sumitdata() {
-        fetchData();
-    }
-
+    const submitData = () => fetchData();
 
     const indexOfLastJob = currentPage * jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
     const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
 
-
     return (
         <div>
             <ResponsiveNavbar />
-            <div className='inputboxall'>
+            <div className="filter-container">
+                
                 <input
                     type="text"
-                    placeholder="Search for jobs"
+                    placeholder="Job title"
                     value={searchTitle}
-                    className='inputbox'
                     onChange={(e) => setSearchTitle(e.target.value)}
-                    style={{ marginRight: '10px', padding: '8px' }}
+                    className="filter-input"
                 />
-
-                <div className='inputbtns'>
-                    <button
-                        onClick={() => handleDateClick('today')}
-                        style={{
-                            marginRight: '10px',
-                            backgroundColor: dateposted === 'today' ? '#4caf50' : '#e0e0e0',
-                            color: dateposted === 'today' ? 'white' : 'black'
-                        }}
-                    >
-                        Last 24h
-                    </button>
-                    <button
-                        onClick={() => handleDateClick('week')}
-                        style={{
-                            marginRight: '10px',
-                            backgroundColor: dateposted === 'week' ? '#4caf50' : '#e0e0e0',
-                            color: dateposted === 'week' ? 'white' : 'black'
-                        }}
-                    >
-                        Last 7 days
-                    </button>
-                    <button
-                        onClick={() => handleDateClick('month')}
-                        style={{
-                            backgroundColor: dateposted === 'month' ? '#4caf50' : '#e0e0e0',
-                            color: dateposted === 'month' ? 'white' : 'black'
-                        }}
-                    >
-                        Last 30 days
-                    </button>
-                </div>
-
 
                 <input
                     type="text"
                     placeholder="Location"
                     value={location}
-                    className='inputboxlocation'
                     onChange={(e) => setLocation(e.target.value)}
-                    style={{ padding: '8px' }}
+                    className="filter-input"
                 />
 
-                <div className='inputbtns'>
-                    <button
-                        onClick={() => handleTypeClick('Full-time')}
-                        style={{
-                            marginRight: '10px',
-                            backgroundColor: jobtype === 'Full-time' ? '#4caf50' : '#e0e0e0',
-                            color: jobtype === 'Full-time' ? 'white' : 'black'
-                        }}
-                    >
+                <div className="filter-buttons">
+                    <button onClick={() => handleDateClick('today')} className={dateposted === 'today' ? 'active' : ''}>
+                        Last 24h
+                    </button>
+                    <button onClick={() => handleDateClick('week')} className={dateposted === 'week' ? 'active' : ''}>
+                        Last 7 days
+                    </button>
+                    <button onClick={() => handleDateClick('month')} className={dateposted === 'month' ? 'active' : ''}>
+                        Last 30 days
+                    </button>
+                </div>
+
+                <div className="filter-buttons">
+                    <button onClick={() => handleTypeClick('Full-time')} className={jobtype === 'Full-time' ? 'active' : ''}>
                         Full-time
                     </button>
-                    <button
-                        onClick={() => handleTypeClick('Part-time')}
-                        style={{
-                            marginRight: '10px',
-                            backgroundColor: jobtype === 'Part-time' ? '#4caf50' : '#e0e0e0',
-                            color: jobtype === 'Part-time' ? 'white' : 'black'
-                        }}
-                    >
+                    <button onClick={() => handleTypeClick('Part-time')} className={jobtype === 'Part-time' ? 'active' : ''}>
                         Part-time
                     </button>
-                    <button
-                        onClick={() => handleTypeClick('Contract')}
-                        style={{
-                            backgroundColor: jobtype === 'Contract' ? '#4caf50' : '#e0e0e0',
-                            color: jobtype === 'Contract' ? 'white' : 'black'
-                        }}
-                    >
+                    <button onClick={() => handleTypeClick('Contract')} className={jobtype === 'Contract' ? 'active' : ''}>
                         Contract
                     </button>
-                    <button
-                        onClick={sumitdata}
-                        style={{
-                            marginLeft: '40px',
-
-                            padding: '10px 20px',
-                            backgroundColor: '#2196f3',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        Submit
-                    </button>
-
                 </div>
 
-
-
+                <button className="submit-btn" onClick={submitData}>Search Jobs</button>
             </div>
-            <div className='joblisting'>
-                <h4>Job Listings</h4>
-                <div className="job-list">
-                    {currentJobs.map((job, index) => (
-                        <div key={index} className="job-card">
-                            <div className="job-list-text">
-                                <p>{job.job_posted_at}</p>
-                                <h3>{job.job_title}</h3>
-                                <p>{job.company_name}</p>
-                                <p>{job.employer_name} - {job.job_location}</p>
 
-                                <Link to={`/jobdescription/${job.job_id}`}>
-                                    <button>View Details</button>
-                                </Link>
-                            </div>
-
-                            <div className="job-list-image">
-                                <img alt="Employer Logo" src={job.employer_logo} />
-
-                            </div>
-
-
+            <div className="job-list-container">
+                <h3>Job Listings</h3>
+                {currentJobs.map((job, index) => (
+                    <div key={index} className="job-card">
+                        <div className="job-info">
+                            <h4>{job.job_title}</h4>
+                            <p>{job.company_name} - {job.job_location}</p>
+                            <p>Posted: {job.job_posted_at}</p>
+                            <Link to={`/jobdescription/${job.job_id}`}>
+                                <button className="view-btn">View Details</button>
+                            </Link>
                         </div>
+                        {job.employer_logo && (
+                            <div className="job-logo">
+                                <img src={job.employer_logo} alt="Logo" />
+                            </div>
+                        )}
+                    </div>
+                ))}
 
-                    ))}
-                </div>
-                <div className="pagination">
-                    {Array.from({ length: Math.ceil(jobs.length / jobsPerPage) }, (_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => setCurrentPage(i + 1)}
-                            style={{
-                                margin: '5px',
-                                backgroundColor: currentPage === i + 1 ? '#4caf50' : '#e0e0e0'
-                            }}
-                        >
-                            {i + 1}
-                        </button>
-                    ))}
-                </div>
-
+                {jobs.length > jobsPerPage && (
+                    <div className="pagination">
+                        {Array.from({ length: Math.ceil(jobs.length / jobsPerPage) }, (_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setCurrentPage(i + 1)}
+                                className={currentPage === i + 1 ? 'active' : ''}
+                            >
+                                {i + 1}
+                            </button>
+                        ))}
+                    </div>
+                )}
             </div>
-
-
-
-
         </div>
     );
 }
 
 export default Home;
-
-
