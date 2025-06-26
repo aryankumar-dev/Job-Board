@@ -37,7 +37,7 @@ function ResponsiveNavbar() {
                 <Navbar.Brand href="#" style={{ color: textColor }}>
                     HireMe
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle style={{ color: textColor }} aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Nav.Link href="/saved" style={{ color: textColor }}>
