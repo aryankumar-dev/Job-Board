@@ -1,22 +1,26 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css'
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
-function Navbar() {
-    return (
-        <nav className="navbar navbar-light bg-light justify-content-between px-5 ">
-            <a className="navbar-brand" href="#">HireMe</a>
+function ResponsiveNavbar() {
+   
+ return (
+    <Navbar bg="light" expand="md" className="px-3">
+      <Container fluid>
+        <Navbar.Brand href="#">HireMe</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link href="#saved-jobs">Saved Jobs</Nav.Link>
+            <Nav.Link href="#logo1">Logo</Nav.Link>
+            <Nav.Link href="#logo2">Logo</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 
-            <div className="navbar-brand">
-                <a className="navbar-brand" href="#">Saved Jobs</a>
-                <a className="navbar-brand" href="#">Logo</a>
-                <a className="navbar-brand" href="#">Logo</a>
-            </div>
-
-
-
-        </nav>
-    );
 }
 
-export default Navbar;
+export default ResponsiveNavbar;

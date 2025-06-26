@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar.jsx';
+import ResponsiveNavbar from '../../components/Navbar/Navbar.jsx';
 import JobDescription from '../JobDescription/JobDescription.jsx'
 import axios from "axios";
 import './Home.css'
@@ -64,7 +64,7 @@ function Home() {
 
     return (
         <div>
-            <Navbar />
+            <ResponsiveNavbar />
             <div className='inputboxall'>
                 <input
                     type="text"
