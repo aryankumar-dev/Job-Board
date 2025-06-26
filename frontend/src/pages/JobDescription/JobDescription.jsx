@@ -9,7 +9,7 @@ import Apply from '../Apply/Apply.jsx';
 
 function JobDescription() {
   const [showModal, setShowModal] = useState(false);
- const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
+  const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
 
   const navigate = useNavigate();
   const saveAndGoSaved = () => {

@@ -1,10 +1,63 @@
 .saved-page {
-    padding: 50px;
-    margin-left: 150px;
-    margin-right: 150px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .savetitle {
-    padding-top: 30px;
-    padding-bottom: 30px;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.styled-table th,
+.styled-table td {
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.remove-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+  background-color: #e60000;
+}
+
+.empty-message {
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: #777;
 }
