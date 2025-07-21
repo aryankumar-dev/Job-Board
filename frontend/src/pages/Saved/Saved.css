@@ -1,14 +1,34 @@
-.saved-page {
+
+.saved-background {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #7F00FF, #E100FF);
+  font-family: 'Poppins', sans-serif;
+  color: #333;
   padding: 20px;
+}
+
+.saved-page {
   max-width: 900px;
   margin: 0 auto;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  margin-top: 30px;
 }
 
 .savetitle {
-  font-size: 28px;
-  margin-bottom: 20px;
   text-align: center;
-  color: #333;
+  font-size: 2rem;
+  color: #7F00FF;
+  margin-bottom: 25px;
+}
+
+.empty-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 50px;
 }
 
 .table-container {
@@ -18,19 +38,17 @@
 .styled-table {
   width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table th, .styled-table td {
+  padding: 15px;
+  text-align: left;
 }
 
 .styled-table thead {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.styled-table th,
-.styled-table td {
-  text-align: left;
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
+  background-color: #E100FF;
+  color: #fff;
 }
 
 .styled-table tbody tr:nth-child(even) {
@@ -42,22 +60,16 @@
 }
 
 .remove-btn {
-  background-color: #ff4d4d;
+  padding: 10px 15px;
+  background: #7F00FF;
   color: white;
   border: none;
-  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
 }
 
 .remove-btn:hover {
-  background-color: #e60000;
-}
-
-.empty-message {
-  padding: 40px;
-  text-align: center;
-  font-size: 18px;
-  color: #777;
+  background: #E100FF;
 }

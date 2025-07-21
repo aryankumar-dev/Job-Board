@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import './Apply.css';
 
 function Apply({ show, onClose }) {
   const [formData, setFormData] = useState({
@@ -20,16 +21,16 @@ function Apply({ show, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Application submitted successfully!");
-    onClose(); // Close the modal
+    onClose();
   };
 
   return (
-    <Modal show={show} onHide={onClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Apply for Job</Modal.Title>
+    <Modal show={show} onHide={onClose} centered className="custom-modal">
+      <Modal.Header closeButton className="modal-header-custom">
+        <Modal.Title className="modal-title-custom">Apply for Job</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+      <Modal.Body className="modal-body-custom">
+        <Form onSubmit={handleSubmit} className="apply-form">
           <Form.Group className="mb-3" controlId="formFullName">
             <Form.Control
               type="text"
@@ -38,6 +39,7 @@ function Apply({ show, onClose }) {
               value={formData.fullName}
               onChange={handleChange}
               required
+              className="input-field"
             />
           </Form.Group>
 
@@ -49,6 +51,7 @@ function Apply({ show, onClose }) {
               value={formData.email}
               onChange={handleChange}
               required
+              className="input-field"
             />
           </Form.Group>
 
@@ -60,6 +63,7 @@ function Apply({ show, onClose }) {
               value={formData.linkedin}
               onChange={handleChange}
               required
+              className="input-field"
             />
           </Form.Group>
 
@@ -69,14 +73,15 @@ function Apply({ show, onClose }) {
               name="resume"
               onChange={handleChange}
               required
+              className="input-field"
             />
           </Form.Group>
 
-          <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>
+          <Modal.Footer className="modal-footer-custom">
+            <Button variant="secondary" onClick={onClose} className="cancel-btn">
               Cancel
             </Button>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="submit-btn">
               Submit Application
             </Button>
           </Modal.Footer>

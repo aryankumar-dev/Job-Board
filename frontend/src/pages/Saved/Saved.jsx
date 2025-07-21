@@ -28,40 +28,40 @@ function Saved() {
     localStorage.setItem('savedJobs', JSON.stringify(filtered));
   };
 
-  if (savedJobs.length === 0) {
-    return <p className="empty-message">You have no saved jobs.</p>;
-  }
-
   return (
-    <div> 
-    <ResponsiveNavbar />
-    <div className="saved-page">
-      <h2 className="savetitle">⭐ Your Saved Jobs</h2>
-      <div className="table-container">
-        <table className="styled-table">
-          <thead>
-            <tr>
-              <th>Job Title</th>
-              <th>Company & Location</th>
-              <th>Posted At</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {savedJobs.map(job => (
-              <tr key={job.job_id}>
-                <td>{job.job_title}</td>
-                <td>{job.employer_name} - {job.job_location}</td>
-                <td>{job.job_posted_at}</td>
-                <td>
-                  <button className="remove-btn" onClick={() => removeJob(job.job_id)}>Remove</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="saved-background">
+      <ResponsiveNavbar />
+      <div className="saved-page">
+        <h2 className="savetitle">⭐ Your Saved Jobs</h2>
+        {savedJobs.length === 0 ? (
+          <p className="empty-message">You have no saved jobs.</p>
+        ) : (
+          <div className="table-container">
+            <table className="styled-table">
+              <thead>
+                <tr>
+                  <th>Job Title</th>
+                  <th>Company & Location</th>
+                  <th>Posted At</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {savedJobs.map(job => (
+                  <tr key={job.job_id}>
+                    <td>{job.job_title}</td>
+                    <td>{job.employer_name} - {job.job_location}</td>
+                    <td>{job.job_posted_at}</td>
+                    <td>
+                      <button className="remove-btn" onClick={() => removeJob(job.job_id)}>Remove</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
-    </div>
     </div>
   );
 }

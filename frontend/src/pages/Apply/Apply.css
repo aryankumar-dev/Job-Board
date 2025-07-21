@@ -1,0 +1,73 @@
+/* Apply.css */
+
+.custom-modal .modal-content {
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header-custom {
+  background: linear-gradient(to right, #7F00FF, #E100FF);
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px;
+}
+
+.modal-title-custom {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.modal-body-custom {
+  padding: 30px;
+}
+
+.input-field {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  transition: border 0.3s;
+}
+
+.input-field:focus {
+  border: 1px solid #7F00FF;
+  box-shadow: 0 0 5px rgba(127, 0, 255, 0.5);
+}
+
+.modal-footer-custom {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px 30px;
+}
+
+.cancel-btn {
+  background: #ccc;
+  color: #333;
+  font-weight: bold;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  width: 45%;
+  transition: background 0.3s;
+}
+
+.cancel-btn:hover {
+  background: #999;
+}
+
+.submit-btn {
+  background: #E100FF;
+  font-weight: bold;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  width: 45%;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #7F00FF;
+}
